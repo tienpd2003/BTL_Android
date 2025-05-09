@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "980013232992",
+    "project_id": "homehunt-5a7de",
+    "storage_bucket": "homehunt-5a7de.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980013232992:android:96cf48ef173b0b91d96405",
+        "android_client_info": {
+          "package_name": "com.homehunt"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtp5ylfvtPvh-prEnPMGqmqArLAYJYjq8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
