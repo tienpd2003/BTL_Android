@@ -73,9 +73,9 @@ public class MainActivity extends Fragment  {
 
                 AdapterRoomSuggestion listRoomSuggestions = new AdapterRoomSuggestion(getActivity(), roomArrayList);
                 LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-                RecyclerView recyclerViewListRoomSuggestions = layout.findViewById(R.id.recycler_Grid_Main_Room);
-                recyclerViewListRoomSuggestions.setLayoutManager(linearLayoutManager);
-                recyclerViewListRoomSuggestions.setAdapter(listRoomSuggestions);
+//                RecyclerView recyclerViewListRoomSuggestions = layout.findViewById(R.id.recycler_Grid_Main_Room);
+//                recyclerViewListRoomSuggestions.setLayoutManager(linearLayoutManager);
+//                recyclerViewListRoomSuggestions.setAdapter(listRoomSuggestions);
             }
 
             @Override

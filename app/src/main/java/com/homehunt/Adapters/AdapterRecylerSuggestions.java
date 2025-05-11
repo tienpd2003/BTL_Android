@@ -2,7 +2,6 @@ package com.homehunt.Adapters;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -13,7 +12,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.homehunt.R;
-import com.homehunt.views.SearchView;
 
 import java.util.List;
 class AdapterRecyclerSuggestions extends RecyclerView.Adapter<AdapterRecyclerSuggestions.ViewHolder> {
@@ -62,12 +60,12 @@ class AdapterRecyclerSuggestions extends RecyclerView.Adapter<AdapterRecyclerSug
             public void onClick(View v) {
                 //Trường hợp gọi từ màn hình chính
                 if(isSearchRoomCall == false){
-                    // Tạo một Intent để chuyển từ màn hình hiện tại (context) sang searchView (một màn hình khác).
-                    Intent intent = new Intent(context, SearchView.class);
-                    // Đặt dữ liệu (quận) để chuyển đến màn hình mới thông qua Intent.
-                    intent.putExtra(INTENT_DISTRICT, stringListDistrictLocation.get(position));
-                    // Khởi chạy màn hình mới (searchView) bằng cách sử dụng Intent.
-                    context.startActivity(intent);
+//                    // Tạo một Intent để chuyển từ màn hình hiện tại (context) sang searchView (một màn hình khác).
+//                    Intent intent = new Intent(context, SearchView.class);
+//                    // Đặt dữ liệu (quận) để chuyển đến màn hình mới thông qua Intent.
+//                    intent.putExtra(INTENT_DISTRICT, stringListDistrictLocation.get(position));
+//                    // Khởi chạy màn hình mới (searchView) bằng cách sử dụng Intent.
+//                    context.startActivity(intent);
                 }
                 else {
                     // Trường hợp gọi từ search room
