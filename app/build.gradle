@@ -45,6 +45,8 @@ dependencies {
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
     implementation('androidx.activity:activity:1.8.0')
+    implementation 'com.makeramen:roundedimageview:2.3.0'
+
 }
 
 allprojects {
