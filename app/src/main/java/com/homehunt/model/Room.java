@@ -232,7 +232,7 @@ public class Room implements Parcelable {
         listServices = in.readString();
 
         // Read UserModel from the Parcel
-        roomOwner = in.readParcelable(UserModel.class.getClassLoader());
+            roomOwner = in.readParcelable(UserModel.class.getClassLoader());
     }
 
     @Override
