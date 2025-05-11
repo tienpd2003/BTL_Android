@@ -60,12 +60,12 @@ class AdapterRecyclerSuggestions extends RecyclerView.Adapter<AdapterRecyclerSug
             public void onClick(View v) {
                 //Trường hợp gọi từ màn hình chính
                 if(isSearchRoomCall == false){
-                    // Tạo một Intent để chuyển từ màn hình hiện tại (context) sang searchView (một màn hình khác).
-                    Intent intent = new Intent(context, SearchView.class);
-                    // Đặt dữ liệu (quận) để chuyển đến màn hình mới thông qua Intent.
-                    intent.putExtra(INTENT_DISTRICT, stringListDistrictLocation.get(position));
-                    // Khởi chạy màn hình mới (searchView) bằng cách sử dụng Intent.
-                    context.startActivity(intent);
+//                    // Tạo một Intent để chuyển từ màn hình hiện tại (context) sang searchView (một màn hình khác).
+//                    Intent intent = new Intent(context, SearchView.class);
+//                    // Đặt dữ liệu (quận) để chuyển đến màn hình mới thông qua Intent.
+//                    intent.putExtra(INTENT_DISTRICT, stringListDistrictLocation.get(position));
+//                    // Khởi chạy màn hình mới (searchView) bằng cách sử dụng Intent.
+//                    context.startActivity(intent);
                 }
                 else {
                     // Trường hợp gọi từ search room
