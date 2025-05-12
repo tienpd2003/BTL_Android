@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.homehunt.R;
 
 import java.util.List;
-class AdapterRecyclerSuggestions extends RecyclerView.Adapter<AdapterRecyclerSuggestions.ViewHolder> {
+public class AdapterRecyclerSuggestions extends RecyclerView.Adapter<AdapterRecyclerSuggestions.ViewHolder> {
     public final static String INTENT_DISTRICT = "DISTRICT";
     Context context;
     int resource;
