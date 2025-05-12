@@ -27,7 +27,7 @@ public class MainMenu extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.main_menu);
+        setContentView(R.layout.main__menu);
 
         initControl();
         HomeView = new MainActivity();
@@ -42,20 +42,20 @@ public class MainMenu extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
-//                if(id == R.id.nav_home){
+                if(id == R.id.nav_home){
 //                    setFragment(HomeView);
-//                    return true;
-//                }
-//                else if(id == R.id.nav_room){
+                    return true;
+                }
+                else if(id == R.id.nav_room){
 //                    Intent intent = new Intent(MainMenu.this, PostRoom.class);
 //                    startActivity(intent);
-//                    return true;
-//                }
-//                else if(id == R.id.nav_acount) {
-//                    AccountView = new AccountView();
+                    return true;
+                }
+                else if(id == R.id.nav_acount) {
+                    AccountView = new AccountView();
 //                    setFragment(AccountView);
-//                    return true;
-//                }
+                    return true;
+                }
                 return false;
             }
         });
