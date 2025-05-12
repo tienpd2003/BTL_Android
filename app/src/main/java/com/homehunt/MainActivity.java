@@ -22,6 +22,7 @@ import com.homehunt.model.Room;
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity"; // Thêm TAG để dễ lọc log
+    private boolean isFirstRoom = true; // Biến để đánh dấu phòng đầu tiên
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void openDetailRoom() {
-        // Lấy thông tin phòng từ Firebase (giả sử lấy phòng đầu tiên trong "ListRoom")
+        // Lấy thông tin phòng từ Firebase
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("ListRoom");
         ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -59,13 +60,14 @@ public class MainActivity extends AppCompatActivity {
                         Log.d(TAG, "Địa chỉ: " + room.getAddress());
                         Log.d(TAG, "Trạng thái: " + room.getConditionRoom());
                         Log.d(TAG, "----------------------------------------");
-                    }
 
-                    // Mở DetailRoom với ID phòng đầu tiên
-                    if (roomSnap.equals(snapshot.getChildren().iterator().next())) {
-                        Intent intent = new Intent(MainActivity.this, DetailRoom.class);
-                        intent.putExtra("intentDetailRoom", roomId);
-                        startActivity(intent);
+                        // Chỉ mở DetailRoom cho phòng đầu tiên
+                        if (isFirstRoom) {
+                            Intent intent = new Intent(MainActivity.this, DetailRoom.class);
+                            intent.putExtra("intentDetailRoom", roomId);
+                            startActivity(intent);
+                            isFirstRoom = false; // Đánh dấu đã xử lý phòng đầu tiên
+                        }
                     }
                 }
             }
