@@ -2,6 +2,7 @@ package com.homehunt;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
@@ -16,8 +17,11 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.homehunt.views.DetailRoom;
+import com.homehunt.model.Room;
 
 public class MainActivity extends AppCompatActivity {
+
+    private static final String TAG = "MainActivity"; // Thêm TAG để dễ lọc log
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +43,36 @@ public class MainActivity extends AppCompatActivity {
     private void openDetailRoom() {
         // Lấy thông tin phòng từ Firebase (giả sử lấy phòng đầu tiên trong "ListRoom")
         DatabaseReference ref = FirebaseDatabase.getInstance().getReference("ListRoom");
-        ref.limitToFirst(1).addListenerForSingleValueEvent(new ValueEventListener() {
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
+                Log.d(TAG, "Tổng số phòng: " + snapshot.getChildrenCount());
+                
                 for (DataSnapshot roomSnap : snapshot.getChildren()) {
+                    Room room = roomSnap.getValue(Room.class);
                     String roomId = roomSnap.getKey();
+                    
+                    if (room != null) {
+                        Log.d(TAG, "Phòng ID: " + roomId);
+                        Log.d(TAG, "Tên phòng: " + room.getTitle());
+                        Log.d(TAG, "Giá thuê: " + room.getRentingPrice());
+                        Log.d(TAG, "Địa chỉ: " + room.getAddress());
+                        Log.d(TAG, "Trạng thái: " + room.getConditionRoom());
+                        Log.d(TAG, "----------------------------------------");
+                    }
 
-                    // Mở DetailRoom với ID phòng lấy được từ Firebase
-                    Intent intent = new Intent(MainActivity.this, DetailRoom.class);
-                    intent.putExtra("intentDetailRoom", roomId);
-                    startActivity(intent);
-                    break; // Chỉ mở phòng đầu tiên trong danh sách
+                    // Mở DetailRoom với ID phòng đầu tiên
+                    if (roomSnap.equals(snapshot.getChildren().iterator().next())) {
+                        Intent intent = new Intent(MainActivity.this, DetailRoom.class);
+                        intent.putExtra("intentDetailRoom", roomId);
+                        startActivity(intent);
+                    }
                 }
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
+                Log.e(TAG, "Lỗi tải danh sách phòng: " + error.getMessage());
                 Toast.makeText(MainActivity.this, "Không tải được phòng", Toast.LENGTH_SHORT).show();
             }
         });
