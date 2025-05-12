@@ -14,8 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.homehunt.model.Room;
 import com.homehunt.R;
 import com.homehunt.views.DetailRoom;
-//import com.squareup.picasso.Callback;
-//import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Callback;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
