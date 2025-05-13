@@ -1,8 +1,11 @@
 package com.homehunt.views;
 
+import android.Manifest;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -41,6 +44,8 @@ public class DetailRoom extends AppCompatActivity implements View.OnClickListene
     private ArrayList<ImageView> imageView;
     private TextView moreImg, electricityPrice, waterPrice, wifiPrice, parkingPrice;
     private RecyclerView listServicesRoom;
+    private Button btnCallPhone, btnDirectMap;
+    private static final int REQUEST_CALL_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -99,6 +104,11 @@ public class DetailRoom extends AppCompatActivity implements View.OnClickListene
 
         listServicesRoom = findViewById(R.id.recycler_convenients_room_detail);
         toolbar = findViewById(R.id.toolbar);
+
+        btnCallPhone = findViewById(R.id.btn_callPhone);
+        btnDirectMap = findViewById(R.id.btn_directMap);
+        btnCallPhone.setOnClickListener(this);
+        btnDirectMap.setOnClickListener(this);
 
         if (toolbar != null) {
             setSupportActionBar(toolbar);
@@ -260,7 +270,51 @@ public class DetailRoom extends AppCompatActivity implements View.OnClickListene
     }
 
     @Override
-    public void onClick(View view){
+    public void onClick(View view) {
+        int id = view.getId();
+        if(id == R.id.btn_callPhone) {
+            makePhoneCall();
+        } else if(id == R.id.btn_directMap) {
+            openGoogleMaps();
+        }
+    }
 
+    private void makePhoneCall() {
+        String phoneNumber = phoneContact.getText().toString();
+        if (phoneNumber.trim().length() > 0) {
+            if (checkSelfPermission(Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+                requestPermissions(new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CALL_PERMISSION);
+            } else {
+                String dial = "tel:" + phoneNumber;
+                startActivity(new Intent(Intent.ACTION_CALL, Uri.parse(dial)));
+            }
+        }
+    }
+
+    private void openGoogleMaps() {
+        String location = address.getText().toString();
+        if(location != null && !location.isEmpty()) {
+            try {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=" + Uri.encode(location));
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                startActivity(mapIntent);
+            } catch (Exception e) {
+                Toast.makeText(this, "Không thể mở Google Maps", Toast.LENGTH_SHORT).show();
+            }
+        } else {
+            Toast.makeText(this, "Không tìm thấy địa chỉ phòng trọ", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        if (requestCode == REQUEST_CALL_PERMISSION) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                makePhoneCall();
+            } else {
+                Toast.makeText(this, "Quyền gọi điện bị từ chối", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 }

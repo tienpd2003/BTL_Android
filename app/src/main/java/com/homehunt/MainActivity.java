@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_main);
+//        setContentView(R.layout.activity_main);
 
         // // Cập nhật padding cho giao diện để hỗ trợ các cửa sổ hệ thống
         // ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         // });
 
         // Tải thông tin phòng từ Firebase và mở DetailRoom
-//        openDetailRoom();
+        openDetailRoom();
     }
 
 
