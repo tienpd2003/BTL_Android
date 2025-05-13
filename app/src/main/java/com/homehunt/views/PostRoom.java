@@ -142,4 +142,8 @@ public class PostRoom extends AppCompatActivity implements View.OnClickListener 
 
         super.onBackPressed(); // Gọi hàm gốc để thực hiện quay lại màn hình trước
     }
+
+    public void setCurrentPage(int pageNumber){
+        pager.setCurrentItem(pageNumber);
+    }
 }
