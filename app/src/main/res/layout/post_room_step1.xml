@@ -187,15 +187,15 @@
             <Button
                 android:id="@+id/btn_nextStep1_post_room"
                 android:layout_width="match_parent"
-                android:height="40dp"
-                android:layout_height="wrap_content"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
                 android:layout_marginTop="25dp"
                 android:background="@drawable/custom_button_login"
                 android:text="Xác nhận"
-                android:textSize="20dp"
+                android:textSize="20sp"
                 android:textAllCaps="false"
-                android:textColor="#FFFFFF" />
+                android:textColor="#FFFFFF"
+                android:gravity="center" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

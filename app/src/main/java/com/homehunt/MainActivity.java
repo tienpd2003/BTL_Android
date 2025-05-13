@@ -1,86 +1,82 @@
 package com.homehunt;
 
-import static android.Manifest.permission.ACCESS_FINE_LOCATION;
-
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.GridView;
-import android.widget.ProgressBar;
+import android.util.Log;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.widget.NestedScrollView;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import com.homehunt.Adapters.AdapterRoomSuggestion;
-//import com.homehunt.controller.MainActivityController;
-import com.homehunt.model.Room;
-import com.homehunt.R;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.homehunt.views.DetailRoom;
+import com.homehunt.model.Room;
 
-import java.util.ArrayList;
+public class MainActivity extends AppCompatActivity {
 
-public class MainActivity extends Fragment  {
-    RecyclerView recyclerGridMainRoom;
-    ProgressBar progressBarMain;
-    NestedScrollView nestedScrollMainView;
-    ProgressBar progressBarLoadMoreGridMainRoom;
-    GridView grVLocation;
-    EditText edTSearch;
-    View layout;
-//    MainActivityController mainActivityController;
+    private static final String TAG = "MainActivity"; // Thêm TAG để dễ lọc log
+    private boolean isFirstRoom = true; // Biến để đánh dấu phòng đầu tiên
+
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        EdgeToEdge.enable(this);
+        EdgeToEdge.enable(this);
 //        setContentView(R.layout.activity_main);
-//        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-//            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-//            return insets;
-//        });
+
+        // // Cập nhật padding cho giao diện để hỗ trợ các cửa sổ hệ thống
+        // ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        //     Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+        //     v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+        //     return insets;
+        // });
+
+        // Tải thông tin phòng từ Firebase và mở DetailRoom
+        openDetailRoom();
     }
-    private void initRecyclerView() {
-        FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-        DatabaseReference databaseReference = firebaseDatabase.getReference("ListRoom");
 
-        databaseReference.addValueEventListener(new ValueEventListener() {
+
+    private void openDetailRoom() {
+        // Lấy thông tin phòng từ Firebase
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("ListRoom");
+        ref.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                ArrayList<Room> roomArrayList = new ArrayList<>();
+            public void onDataChange(DataSnapshot snapshot) {
+                Log.d(TAG, "Tổng số phòng: " + snapshot.getChildrenCount());
+                
+                for (DataSnapshot roomSnap : snapshot.getChildren()) {
+                    Room room = roomSnap.getValue(Room.class);
+                    String roomId = roomSnap.getKey();
+                    
+                    if (room != null) {
+                        Log.d(TAG, "Phòng ID: " + roomId);
+                        Log.d(TAG, "Tên phòng: " + room.getTitle());
+                        Log.d(TAG, "Giá thuê: " + room.getRentingPrice());
+                        Log.d(TAG, "Địa chỉ: " + room.getAddress());
+                        Log.d(TAG, "Trạng thái: " + room.getConditionRoom());
+                        Log.d(TAG, "----------------------------------------");
 
-                for(DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    try {
-                        Room room = dataSnapshot.getValue(Room.class);
-                        roomArrayList.add(0, room);
-                    }catch (Exception e){
-                        Toast.makeText(getContext(), "Lỗi tải dữ liệu phòng", Toast.LENGTH_SHORT).show();
+                        // Chỉ mở DetailRoom cho phòng đầu tiên
+                        if (isFirstRoom) {
+                            Intent intent = new Intent(MainActivity.this, DetailRoom.class);
+                            intent.putExtra("intentDetailRoom", roomId);
+                            startActivity(intent);
+                            isFirstRoom = false; // Đánh dấu đã xử lý phòng đầu tiên
+                        }
                     }
                 }
-
-                AdapterRoomSuggestion listRoomSuggestions = new AdapterRoomSuggestion(getActivity(), roomArrayList);
-                LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
-//                RecyclerView recyclerViewListRoomSuggestions = layout.findViewById(R.id.recycler_Grid_Main_Room);
-//                recyclerViewListRoomSuggestions.setLayoutManager(linearLayoutManager);
-//                recyclerViewListRoomSuggestions.setAdapter(listRoomSuggestions);
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(getContext(), "Lỗi kết nối cơ sở dữ liệu", Toast.LENGTH_SHORT).show();
+            public void onCancelled(DatabaseError error) {
+                Log.e(TAG, "Lỗi tải danh sách phòng: " + error.getMessage());
+                Toast.makeText(MainActivity.this, "Không tải được phòng", Toast.LENGTH_SHORT).show();
             }
         });
     }
