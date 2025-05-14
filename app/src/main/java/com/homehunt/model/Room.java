@@ -8,9 +8,12 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Room implements Parcelable {
-    private String idRoom = "n", title = "n", description = "n", address = "n", typeOfRoom = "n", rentingPrice = "n", timeCreated = "n", owner, conditionRoom = "Còn", dateAdded = "15/11/2023";
+    private String idRoom = "n", title = "n", description = "n", address = "n", typeOfRoom = "n", rentingPrice = "n", timeCreated = "n", owner, conditionRoom = "Còn", dateAdded = "15/05/2025";
     private int amountOfPeople = 0, lengthRoom = 0, widthRoom = 0, electricityPrice = 0, waterPrice = 0, internetPrice = 0, parkingFee = 0;
     private String imageUrlNew = "";
+    private UserModel roomOwner = new UserModel();
+    private String listServices = "";
+    private String idOwner = "";
 
     public void setImageUrlNew(String url){
         this.imageUrlNew += (url + " ");
@@ -27,10 +30,6 @@ public class Room implements Parcelable {
         }
         return img;
     }
-
-    private UserModel roomOwner = new UserModel();
-    private String listServices = "";
-    private String idOwner = "";
 
     private void setIdOwner(){
         this.idOwner = roomOwner.getUserID();
