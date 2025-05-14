@@ -204,12 +204,12 @@
                 android:paddingRight="5dp">
             </GridView>
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/Progress_Main"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="5dp" />-->
+            <ProgressBar
+                android:id="@+id/Progress_Main"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -248,13 +248,13 @@
                 android:verticalSpacing="30dp">
             </androidx.recyclerview.widget.RecyclerView>
 
-<!--            <ProgressBar-->
-<!--                android:id="@+id/progress_bar_grid_main_rooms"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:layout_gravity="center"-->
-<!--                android:layout_marginTop="5dp"-->
-<!--                android:layout_marginBottom="15dp"/>-->
+            <ProgressBar
+                android:id="@+id/progress_bar_grid_main_rooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="15dp"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
