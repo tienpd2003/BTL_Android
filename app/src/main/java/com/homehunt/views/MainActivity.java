@@ -1,4 +1,4 @@
-package com.homehunt;
+package com.homehunt.views;
 
 import static android.Manifest.permission.ACCESS_FINE_LOCATION;
 
@@ -21,9 +21,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.homehunt.Adapters.AdapterRoomSuggestion;
+import com.homehunt.R;
 import com.homehunt.controller.MainActivityController;
 import com.homehunt.model.Room;
-import com.homehunt.views.LocationSearch;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -137,44 +137,5 @@ public class MainActivity extends Fragment {
         mainActivityController.loadTopLocation(grVLocation);
         progressBarMain.setVisibility(View.GONE);
     }
-//    private void openDetailRoom() {
-//        // Lấy thông tin phòng từ Firebase
-//        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("ListRoom");
-//        ref.addListenerForSingleValueEvent(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot snapshot) {
-//                Log.d(TAG, "Tổng số phòng: " + snapshot.getChildrenCount());
-//
-//                for (DataSnapshot roomSnap : snapshot.getChildren()) {
-//                    Room room = roomSnap.getValue(Room.class);
-//                    String roomId = roomSnap.getKey();
-//
-//                    if (room != null) {
-//                        Log.d(TAG, "Phòng ID: " + roomId);
-//                        Log.d(TAG, "Tên phòng: " + room.getTitle());
-//                        Log.d(TAG, "Giá thuê: " + room.getRentingPrice());
-//                        Log.d(TAG, "Địa chỉ: " + room.getAddress());
-//                        Log.d(TAG, "Trạng thái: " + room.getConditionRoom());
-//                        Log.d(TAG, "----------------------------------------");
-//
-//                        // Chỉ mở DetailRoom cho phòng đầu tiên
-//                        if (isFirstRoom) {
-//                            Intent intent = new Intent(MainActivity.this, DetailRoom.class);
-//                            intent.putExtra("intentDetailRoom", roomId);
-//                            startActivity(intent);
-//                            isFirstRoom = false; // Đánh dấu đã xử lý phòng đầu tiên
-//                        }
-//                    }
-//                }
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError error) {
-//                Log.e(TAG, "Lỗi tải danh sách phòng: " + error.getMessage());
-//                Toast.makeText(MainActivity.this, "Không tải được phòng", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//    }
-
 
 }
