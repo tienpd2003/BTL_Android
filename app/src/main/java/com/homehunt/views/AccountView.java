@@ -100,18 +100,18 @@ public class AccountView extends Fragment implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         int id = v.getId();
-//        if (id == R.id.btn_edit_account){
-//            Intent intent = new Intent(getContext(), PersonalPage.class);
-//            startActivity(intent);
-//        }
-//        else if (id == R.id.btn_my_Room) {
-//            Intent intent1 = new Intent(getContext(), RoomManagement.class);
-//            startActivity(intent1);
-//        }
-//        else if(id == R.id.btn_logout){
-//            FirebaseAuth.getInstance().signOut();
-//            Intent logout = new Intent(requireActivity(), LoginView.class);
-//            startActivity(logout);
-//        }
+        if (id == R.id.btn_edit_account){
+            Intent intent = new Intent(getContext(), PersonalPage.class);
+            startActivity(intent);
+        }
+        else if (id == R.id.btn_my_Room) {
+            Intent intent1 = new Intent(getContext(), RoomManagement.class);
+            startActivity(intent1);
+        }
+        else if(id == R.id.btn_logout){
+            FirebaseAuth.getInstance().signOut();
+            Intent logout = new Intent(requireActivity(), LoginView.class);
+            startActivity(logout);
+        }
     }
 }

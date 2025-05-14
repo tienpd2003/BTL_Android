@@ -20,7 +20,7 @@
         android:label="Homehunt"
         android:roundIcon="@drawable/house"
         android:supportsRtl="true"
-        android:theme="@style/Theme.Homehunt"
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
             android:name=".MainActivity"
