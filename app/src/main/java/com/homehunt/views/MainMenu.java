@@ -10,7 +10,6 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 
-import com.homehunt.MainActivity;
 import com.homehunt.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -31,7 +30,7 @@ public class MainMenu extends AppCompatActivity {
 
         initControl();
         HomeView = new MainActivity();
-//        setFragment(HomeView);
+        setFragment(HomeView);
     }
 
     private void initControl() {
@@ -43,17 +42,17 @@ public class MainMenu extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 int id = menuItem.getItemId();
                 if(id == R.id.nav_home){
-//                    setFragment(HomeView);
+                    setFragment(HomeView);
                     return true;
                 }
                 else if(id == R.id.nav_room){
-//                    Intent intent = new Intent(MainMenu.this, PostRoom.class);
-//                    startActivity(intent);
+                    Intent intent = new Intent(MainMenu.this, PostRoom.class);
+                    startActivity(intent);
                     return true;
                 }
                 else if(id == R.id.nav_acount) {
                     AccountView = new AccountView();
-//                    setFragment(AccountView);
+                    setFragment(AccountView);
                     return true;
                 }
                 return false;

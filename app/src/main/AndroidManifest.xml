@@ -23,7 +23,34 @@
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".views.SearchView"
+            android:exported="false" />
+        <activity
+            android:name=".views.LocationSearch"
+            android:exported="false" />
+        <activity
+            android:name=".views.AccountView"
+            android:exported="false" />
+        <activity
+            android:name=".views.PersonalPage"
+            android:exported="false" />
+        <activity
+            android:name=".views.RoomManagement"
+            android:exported="false" />
+        <activity
+            android:name=".views.DetailRoom"
+            android:exported="false" />
+        <activity
+            android:name=".views.PostRoom"
+            android:exported="false" />
+        <activity
+            android:name=".views.MainMenu"
+            android:exported="false" />
+        <activity
+            android:name=".views.ResetPassword"
+            android:exported="false" />
+        <activity
+            android:name=".views.LoginView"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -31,9 +58,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        
         <activity
-            android:name=".views.DetailRoom"
+            android:name=".views.SignupView"
             android:exported="false" />
     </application>
 
