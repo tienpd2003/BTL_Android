@@ -4,6 +4,7 @@ import static com.homehunt.Adapters.AdapterRecyclerSuggestions.INTENT_DISTRICT;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,7 +87,9 @@ public class AdapterLocation extends BaseAdapter {
 
         // gan gia tri
         LocationModel itemLocation = listLocation.get(position);
-
+        // Debug log để kiểm tra giá trị image
+        Log.d("AdapterLocation", "Position: " + position);
+        Log.d("AdapterLocation", "Image (raw): " + itemLocation.getImage());
         ViewHolder holder = (ViewHolder) view.getTag();
 
         Picasso.get().load(itemLocation.getImage()).centerCrop().fit().into(holder.image);
