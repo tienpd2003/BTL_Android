@@ -1,7 +1,9 @@
 package com.homehunt.Adapters;
+
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -12,8 +14,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.homehunt.R;
+import com.homehunt.views.SearchView;
 
 import java.util.List;
+
 public class AdapterRecyclerSuggestions extends RecyclerView.Adapter<AdapterRecyclerSuggestions.ViewHolder> {
     public final static String INTENT_DISTRICT = "DISTRICT";
     Context context;
@@ -42,8 +46,10 @@ public class AdapterRecyclerSuggestions extends RecyclerView.Adapter<AdapterRecy
     @NonNull
     @Override
     public AdapterRecyclerSuggestions.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
-        return null;
+        View view = LayoutInflater.from(parent.getContext()).inflate(resource, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
+        // liên kết View với các thành phần của ViewHolder
+        return viewHolder;
     }
 
     // Gán dữ liệu từ danh sách vào ViewHolder tại vị trí position
@@ -60,12 +66,12 @@ public class AdapterRecyclerSuggestions extends RecyclerView.Adapter<AdapterRecy
             public void onClick(View v) {
                 //Trường hợp gọi từ màn hình chính
                 if(isSearchRoomCall == false){
-//                    // Tạo một Intent để chuyển từ màn hình hiện tại (context) sang searchView (một màn hình khác).
-//                    Intent intent = new Intent(context, SearchView.class);
-//                    // Đặt dữ liệu (quận) để chuyển đến màn hình mới thông qua Intent.
-//                    intent.putExtra(INTENT_DISTRICT, stringListDistrictLocation.get(position));
-//                    // Khởi chạy màn hình mới (searchView) bằng cách sử dụng Intent.
-//                    context.startActivity(intent);
+                    // Tạo một Intent để chuyển từ màn hình hiện tại (context) sang searchView (một màn hình khác).
+                    Intent intent = new Intent(context, SearchView.class);
+                    // Đặt dữ liệu (quận) để chuyển đến màn hình mới thông qua Intent.
+                    intent.putExtra(INTENT_DISTRICT, stringListDistrictLocation.get(position));
+                    // Khởi chạy màn hình mới (searchView) bằng cách sử dụng Intent.
+                    context.startActivity(intent);
                 }
                 else {
                     // Trường hợp gọi từ search room
