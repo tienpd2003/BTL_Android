@@ -114,7 +114,7 @@ public class MainActivity extends Fragment {
     }
 
     private void requestPermission(){
-        ActivityCompat.requestPermissions(getActivity(),new String[]{ACCESS_FINE_LOCATION},1);
+//        ActivityCompat.requestPermissions(getActivity(),new String[]{ACCESS_FINE_LOCATION},1);
     }
 
     private void clickSearchRoom(){
